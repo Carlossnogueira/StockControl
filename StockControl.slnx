@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/StockControl.Api/StockControl.Api.csproj" />
+    <Project Path="src/StockControl.Communication/StockControl.Communication.csproj" />
+    <Project Path="src/StockControl.Domain/StockControl.Domain.csproj" />
+    <Project Path="src/StockControl.Exception/StockControl.Exception.csproj" />
+    <Project Path="src/StockControl.Infrastructure/StockControl.Infrastructure.csproj" />
+    <Project Path="src/StockControl.Service/StockControl.Service.csproj" />
+  </Folder>
+</Solution>

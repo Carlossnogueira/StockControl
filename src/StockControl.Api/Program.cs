@@ -1,4 +1,5 @@
 using StockControl.Infrastructure;
+using StockControl.Service;
 
 
 namespace StockControl.Api
@@ -17,6 +18,7 @@ namespace StockControl.Api
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddService();
 
             var app = builder.Build();
 

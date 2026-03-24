@@ -12,7 +12,7 @@ using StockControl.Infrastructure.DataAcess;
 namespace StockControl.Infrastructure.Migrations
 {
     [DbContext(typeof(StockControlContext))]
-    [Migration("20260324002900_AddLoginAndPasswordAtUser")]
+    [Migration("20260324014254_AddLoginAndPasswordAtUser")]
     partial class AddLoginAndPasswordAtUser
     {
         /// <inheritdoc />
@@ -36,7 +36,15 @@ namespace StockControl.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,6 +52,9 @@ namespace StockControl.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

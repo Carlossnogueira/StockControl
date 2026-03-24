@@ -27,9 +27,9 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
             return user;
         }
 
-        public async Task<User?> GetByNameAsync(string name)
+        public async Task<User?> GetByLoginAsync(string login)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Login == login);
             return user;
         }
 

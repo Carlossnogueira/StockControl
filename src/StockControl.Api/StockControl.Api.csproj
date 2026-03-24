@@ -15,11 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\StockControl.Communication\StockControl.Communication.csproj" />
     <ProjectReference Include="..\StockControl.Infrastructure\StockControl.Infrastructure.csproj" />
+    <ProjectReference Include="..\StockControl.Service\StockControl.Service.csproj" />
   </ItemGroup>
 
 </Project>

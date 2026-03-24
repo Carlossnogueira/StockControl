@@ -5,6 +5,7 @@ using StockControl.Domain;
 using StockControl.Domain.Repositories;
 using StockControl.Infrastructure.DataAcess;
 using StockControl.Infrastructure.DataAcess.Repositories;
+using StockControl.Infrastructure.Security;
 
 namespace StockControl.Infrastructure
 {
@@ -17,6 +18,7 @@ namespace StockControl.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUnityOfWork, UnityOfWork>();
+            services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
 
             AddRepositories(services);
         }

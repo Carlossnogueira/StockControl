@@ -7,7 +7,7 @@ namespace StockControl.Domain.Repositories
     {
         Task<User> CreateAsync(User user);
         Task<User?> GetByIdAsync(int id);
-        Task<User?> GetByNameAsync(string name);
+        Task<User?> GetByLoginAsync(string name);
         void UpdateUserAsync(User user);
     }
 }

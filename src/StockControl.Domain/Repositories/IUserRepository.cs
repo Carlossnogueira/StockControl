@@ -1,7 +1,7 @@
 ﻿using StockControl.Domain.Entities;
 
 
-namespace StockControl.Domain.Repository
+namespace StockControl.Domain.Repositories
 {
     public interface IUserRepository
     {

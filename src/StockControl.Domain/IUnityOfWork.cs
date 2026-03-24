@@ -1,6 +1,6 @@
 ﻿namespace StockControl.Domain
 {
-    public interface UnityOfWork
+    public interface IUnityOfWork
     {
         Task Commit();
     }

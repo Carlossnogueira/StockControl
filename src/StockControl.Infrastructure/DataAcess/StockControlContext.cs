@@ -5,7 +5,7 @@ namespace StockControl.Infrastructure.DataAcess
 {
     public class StockControlContext : DbContext
     {
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public StockControlContext(DbContextOptions<StockControlContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

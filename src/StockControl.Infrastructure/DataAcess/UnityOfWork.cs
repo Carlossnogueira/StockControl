@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StockControl.Domain;
+using StockControl.Domain.Repositories;
 
 namespace StockControl.Infrastructure.DataAcess
 {

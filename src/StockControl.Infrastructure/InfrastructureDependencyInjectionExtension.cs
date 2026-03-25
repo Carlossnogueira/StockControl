@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StockControl.Domain;
 using StockControl.Domain.Repositories;
+using StockControl.Domain.Security;
 using StockControl.Infrastructure.DataAcess;
 using StockControl.Infrastructure.DataAcess.Repositories;
 using StockControl.Infrastructure.Security;
@@ -17,15 +17,20 @@ namespace StockControl.Infrastructure
             services.AddDbContext<StockControlContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            // Services
             services.AddScoped<IUnityOfWork, UnityOfWork>();
             services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
 
-            AddRepositories(services);
+            // Repository
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Token Generator
+            var expiretionTimeMinutes = configuration.GetValue<uint>("Jwt:ExpiresMinutes");
+            var signingKey = configuration.GetValue<string>("Jwt:SingningKey");
+
+            services.AddScoped<IAcessTokenGenerator>(config => new JwtTokenGenerator(expiretionTimeMinutes, signingKey!));
         }
 
-        private static void AddRepositories(this IServiceCollection services)
-        {
-            services.AddScoped<IUserRepository, UserRepository>();
-        }
+
     }
 }

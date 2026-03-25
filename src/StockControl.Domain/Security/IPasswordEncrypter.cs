@@ -1,4 +1,4 @@
-﻿namespace StockControl.Domain
+﻿namespace StockControl.Domain.Security
 {
     public interface IPasswordEncrypter
     {

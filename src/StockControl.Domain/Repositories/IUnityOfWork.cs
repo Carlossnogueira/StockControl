@@ -1,4 +1,4 @@
-﻿namespace StockControl.Domain
+﻿namespace StockControl.Domain.Repositories
 {
     public interface IUnityOfWork
     {

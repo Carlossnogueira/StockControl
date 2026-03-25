@@ -1,4 +1,4 @@
-﻿using StockControl.Domain;
+﻿using StockControl.Domain.Security;
 using BC = BCrypt.Net.BCrypt;
 
 namespace StockControl.Infrastructure.Security

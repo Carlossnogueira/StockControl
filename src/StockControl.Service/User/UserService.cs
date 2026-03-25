@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using StockControl.Communication.Request.User;
-using StockControl.Domain;
 using StockControl.Domain.Repositories;
+using StockControl.Domain.Security;
 using StockControl.Domain.Service;
 using StockControl.Exception;
 using StockControl.Exception.User;
@@ -32,7 +32,6 @@ namespace StockControl.Service.User
            
             if(userWithSameLogin != null)
             {
-                // TODO : Create custom exception for this case
                 throw new UserAlreadyExistsException();
             }
 

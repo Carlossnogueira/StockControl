@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockControl.Communication.Request.User;
+using StockControl.Communication.Response;
 using StockControl.Domain.Service;
 
 namespace StockControl.Api.Controllers
@@ -11,23 +12,15 @@ namespace StockControl.Api.Controllers
     {
 
         [HttpPost]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateUser(
             [FromBody] CreateUserDto userDto,
             [FromServices] IUserService service
             )
         {
             var result = await service.CreateUserAsync(userDto);
-
-            // remove after create custom exception
-            if (result != null)
-            {
-                return Ok("Usuario criado!");
-            }
-            else
-            {
-                return BadRequest();
-            }
-
+             return Ok("Usuario criado!");
         }
     }
 }

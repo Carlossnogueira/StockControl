@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StockControl.Communication\StockControl.Communication.csproj" />
+    <ProjectReference Include="..\StockControl.Exception\StockControl.Exception.csproj" />
     <ProjectReference Include="..\StockControl.Infrastructure\StockControl.Infrastructure.csproj" />
     <ProjectReference Include="..\StockControl.Service\StockControl.Service.csproj" />
   </ItemGroup>

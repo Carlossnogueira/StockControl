@@ -1,3 +1,4 @@
+using StockControl.Api.Filter;
 using StockControl.Infrastructure;
 using StockControl.Service;
 
@@ -17,8 +18,12 @@ namespace StockControl.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add custom services
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddService();
+
+            // Add global exception filter
+            builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
             var app = builder.Build();
 

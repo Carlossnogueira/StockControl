@@ -1,9 +1,11 @@
 ﻿using Mapster;
 using StockControl.Communication.Request.User;
 using StockControl.Domain;
-using StockControl.Domain.Entities;
 using StockControl.Domain.Repositories;
 using StockControl.Domain.Service;
+using StockControl.Exception;
+using StockControl.Exception.User;
+using StockControl.Service.Validation;
 
 namespace StockControl.Service.User
 {
@@ -26,13 +28,15 @@ namespace StockControl.Service.User
 
         public async Task<Domain.Entities.User> CreateUserAsync(CreateUserDto userDto)
         {
-            var userWithSameLogin = _userRepository.GetByLoginAsync(userDto.Login);
+            var userWithSameLogin = await _userRepository.GetByLoginAsync(userDto.Login);
            
-            if(userWithSameLogin == null)
+            if(userWithSameLogin != null)
             {
                 // TODO : Create custom exception for this case
-                throw new Exception("Login already exists.");
+                throw new UserAlreadyExistsException();
             }
+
+           ValidateCreateUserDto(userDto);
 
             var passwordHash = _passwordEncrypter.EncryptPassword(userDto.Password);
 
@@ -53,6 +57,18 @@ namespace StockControl.Service.User
         public Task<Domain.Entities.User?> GetbyName(string name)
         {
             throw new NotImplementedException();
+        }
+
+        private void ValidateCreateUserDto(CreateUserDto userDto)
+        {
+            var validator = new UserValidator();
+            var validationResult = validator.Validate(userDto);
+            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+
+            if (!validationResult.IsValid)
+            {
+                throw new ErrorOnValidationException(errors);
+            }
         }
     }
 }

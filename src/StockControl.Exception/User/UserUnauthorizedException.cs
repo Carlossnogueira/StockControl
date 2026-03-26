@@ -15,7 +15,7 @@ namespace StockControl.Exception.User
         public override int StatusCode => (int)HttpStatusCode.Unauthorized;
         public UserUnauthorizedException() : base(string.Empty)
         {
-            _Errors = ["Usuário não autorizado"];
+            _Errors = ["Usuário não autorizado ou não encontrado"];
         }
 
         public override List<string> GetErrors()

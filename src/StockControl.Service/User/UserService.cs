@@ -17,9 +17,10 @@ namespace StockControl.Service.User
         private readonly IPasswordEncrypter _passwordEncrypter;
 
         public UserService(
-            IUserRepository userRepository, 
-            IUnityOfWork unityOfWork,
-            IPasswordEncrypter passwordEncrypter)
+                IUserRepository userRepository, 
+                IUnityOfWork unityOfWork,
+                IPasswordEncrypter passwordEncrypter
+            )
         {
             _userRepository = userRepository;
             _unityOfWork = unityOfWork;

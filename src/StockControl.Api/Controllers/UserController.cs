@@ -15,8 +15,8 @@ namespace StockControl.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateUser(
-            [FromBody] CreateUserDto userDto,
-            [FromServices] IUserService service
+                [FromBody] CreateUserDto userDto,
+                [FromServices] IUserService service
             )
         {
             var result = await service.CreateUserAsync(userDto);

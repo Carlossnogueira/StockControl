@@ -25,7 +25,20 @@ namespace StockControl.Api
             // Add global exception filter
             builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
+            // Desable CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(polices =>
+                {
+                    polices.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
+
+            app.UseCors();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

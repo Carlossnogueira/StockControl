@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using StockControl.Api.Filter;
 using StockControl.Infrastructure;
 using StockControl.Service;
+using System.Text;
 
 
 namespace StockControl.Api
@@ -24,6 +27,22 @@ namespace StockControl.Api
 
             // Add global exception filter
             builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+
+            // Authentication with JWT
+            builder.Services.AddAuthentication(config =>
+            {
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(config =>
+            {
+                config.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = new TimeSpan(0),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("Jwt:SingningKey")!))
+                };
+            });
 
             // Desable CORS
             builder.Services.AddCors(options =>
@@ -49,6 +68,7 @@ namespace StockControl.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

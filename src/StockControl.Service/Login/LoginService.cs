@@ -43,7 +43,7 @@ namespace StockControl.Service.Login
 
             var token = _tokenGenerator.Generate(userWithThisLogin);
 
-            return new JwtTokenResponse(token);
+            return new JwtTokenResponse(userWithThisLogin.Name, token);
         }
     }
 }

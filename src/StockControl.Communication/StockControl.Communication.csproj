@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Request\Item\" />
-    <Folder Include="Request\Catogory\" />
+    <Folder Include="Response\Category\" />
   </ItemGroup>
 
 </Project>

@@ -41,7 +41,7 @@ namespace StockControl.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("StockControl.Domain.Entities.Item", b =>
@@ -92,7 +92,7 @@ namespace StockControl.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("StockControl.Domain.Entities.User", b =>
@@ -145,13 +145,13 @@ namespace StockControl.Infrastructure.Migrations
                     b.HasOne("StockControl.Domain.Entities.Category", "Category")
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("StockControl.Domain.Entities.User", "User")
                         .WithMany("Items")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");

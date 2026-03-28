@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using StockControl.Domain.Service;
+using StockControl.Service.Category;
 using StockControl.Service.Login;
 using StockControl.Service.User;
 
@@ -12,6 +13,7 @@ namespace StockControl.Service
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         } 
     }
 }

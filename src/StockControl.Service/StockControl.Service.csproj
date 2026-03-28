@@ -17,4 +17,8 @@
     <ProjectReference Include="..\StockControl.Exception\StockControl.Exception.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Category\" />
+  </ItemGroup>
+
 </Project>

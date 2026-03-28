@@ -19,10 +19,9 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
             return result.Entity;
         }
 
-        public async Task<List<Item?>> GetAllAsync()
+        public async Task<List<Item>> GetAllAsync()
         {
-            var result = await _context.Items.ToListAsync();
-            return result;
+            return  await _context.Items.ToListAsync();
         }
 
         public async Task<Item?> GetByIdAsync(int id)

@@ -5,17 +5,25 @@ namespace StockControl.Infrastructure.DataAcess
 {
     public class StockControlContext : DbContext
     {
+        
+        public StockControlContext(DbContextOptions<StockControlContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
 
-        public StockControlContext(DbContextOptions<StockControlContext> options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Login)
                 .IsUnique();
+
+            modelBuilder.Entity<Item>()
+                .HasOne(i => i.Category)
+                .WithMany(c => c.Items)
+                .HasForeignKey(i => i.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Item>()
                 .HasOne(i => i.User)
@@ -23,11 +31,6 @@ namespace StockControl.Infrastructure.DataAcess
                 .HasForeignKey(i => i.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Item>()
-                .HasOne(i => i.Category)
-                .WithMany(c => c.Items)
-                .HasForeignKey(i => i.CategoryId)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace StockControl.Infrastructure
 
             // Repository
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             // Token Generator
             var expiretionTimeMinutes = configuration.GetValue<uint>("Jwt:ExpiresMinutes");
@@ -30,7 +32,6 @@ namespace StockControl.Infrastructure
 
             services.AddScoped<IAcessTokenGenerator>(config => new JwtTokenGenerator(expiretionTimeMinutes, signingKey!));
         }
-
 
     }
 }

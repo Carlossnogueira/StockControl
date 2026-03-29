@@ -1,3 +1,4 @@
+using StockControl.Communication.Response.Item;
 using StockControl.Domain.Entities;
 
 namespace StockControl.Domain.Repositories

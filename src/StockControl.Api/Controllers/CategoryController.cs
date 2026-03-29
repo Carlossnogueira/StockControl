@@ -1,9 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockControl.Communication.Request.Catogory;
-using StockControl.Communication.Request.User;
 using StockControl.Communication.Response;
 using StockControl.Communication.Response.Category;
 using StockControl.Domain.Service;

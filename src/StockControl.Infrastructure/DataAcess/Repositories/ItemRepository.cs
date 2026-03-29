@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StockControl.Communication.Response.Item;
 using StockControl.Domain.Entities;
 using StockControl.Domain.Repositories;
 
@@ -21,7 +22,26 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
 
         public async Task<List<Item>> GetAllAsync()
         {
-            return  await _context.Items.ToListAsync();
+            return await _context.Items.ToListAsync();
+        }
+
+        public async Task<List<ItemListResponse>> GetAllProjectedAsync()
+        {
+            return await _context.Items .Select(item => new ItemListResponse
+            {
+                Id = item.Id,
+                Name = item.Name,
+                SKU = item.SKU,
+                Category = item.Category.Name,
+                Quantity = item.Quantity,
+                Price = item.Price,
+                SalePrice = item.SalePrice,
+                Supplier = item.Supplier,
+                Status = item.Status.ToString(),
+                CreatedBy = item.User.Name,
+                Description = item.Description
+            })
+          .ToListAsync();
         }
 
         public async Task<Item?> GetByIdAsync(int id)

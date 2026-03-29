@@ -8,14 +8,14 @@ public class CategoryAlreadyExistsException : StockControlExceptionBase
 
     private readonly List<string> _Errors;
 
-        public override int StatusCode => (int)HttpStatusCode.Conflict;
-        public CategoryAlreadyExistsException() : base(string.Empty)
-        {
-            _Errors = ["Category with the same name already exists."]  ;
-        }
+    public override int StatusCode => (int)HttpStatusCode.Conflict;
+    public CategoryAlreadyExistsException() : base(string.Empty)
+    {
+        _Errors = ["Já existe uma categoria com esse nome."]  ;
+    }
 
-        public override List<string> GetErrors()
-        {
-            return _Errors;
-        }
+    public override List<string> GetErrors()
+    {
+        return _Errors;
+    }
 }

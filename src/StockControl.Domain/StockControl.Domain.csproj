@@ -10,4 +10,5 @@
     <ProjectReference Include="..\StockControl.Communication\StockControl.Communication.csproj" />
   </ItemGroup>
 
+	
 </Project>

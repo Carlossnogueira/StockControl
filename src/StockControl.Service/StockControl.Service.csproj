@@ -13,12 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockControl.Domain\StockControl.Domain.csproj" />
-    <ProjectReference Include="..\StockControl.Exception\StockControl.Exception.csproj" />
+    <Folder Include="Category\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Category\" />
+    <ProjectReference Include="..\StockControl.Communication\StockControl.Communication.csproj" />
+    <ProjectReference Include="..\StockControl.Domain\StockControl.Domain.csproj" />
+    <ProjectReference Include="..\StockControl.Exception\StockControl.Exception.csproj" />
   </ItemGroup>
 
 </Project>

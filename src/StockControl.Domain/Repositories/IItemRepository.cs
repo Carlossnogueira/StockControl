@@ -1,3 +1,4 @@
+using StockControl.Communication.Response.Item;
 using StockControl.Domain.Entities;
 
 namespace StockControl.Domain.Repositories
@@ -9,5 +10,6 @@ namespace StockControl.Domain.Repositories
         Task<Item?> GetByNameAsync(string name);
         Task<List<Item>> GetAllAsync();
         void UpdateItemAsync(Item item);
+        Task<List<ItemListResponse>> GetAllProjectedAsync();
     }
 }

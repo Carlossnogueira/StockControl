@@ -14,6 +14,7 @@ namespace StockControl.Service
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ICategoryService, CategoryService>();
-        } 
+            services.AddScoped<IItemService, Item.ItemService>();
+        }
     }
 }

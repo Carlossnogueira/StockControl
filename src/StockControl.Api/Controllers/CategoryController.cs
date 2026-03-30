@@ -36,5 +36,32 @@ namespace StockControl.Api.Controllers
             var categories = await categoryService.GetAllAsync();
             return Ok(categories);
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(CategoryResponse), StatusCodes.Status200OK)]
+        [Authorize]
+        public async Task<IActionResult> GetById(
+            [FromRoute] int id,
+            [FromServices] ICategoryService categoryService
+            )
+        {
+            var result = await categoryService.GetByIdAsync(id);
+            return Ok(result);
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(CategoryResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Update(
+            [FromRoute] int id,
+            [FromBody] CreateCategoryDto categoryDto,
+            [FromServices] ICategoryService categoryService
+            )
+        {
+            var result = await categoryService.Update(id, categoryDto);
+            return Ok(result);
+        }
     }
 }

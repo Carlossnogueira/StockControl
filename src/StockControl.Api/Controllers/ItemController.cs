@@ -14,7 +14,7 @@ namespace StockControl.Api.Controllers
     public class ItemController : ControllerBase
     {
         [HttpPost]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
         [Authorize]
         public async Task<IActionResult> CreateItem(
@@ -24,7 +24,7 @@ namespace StockControl.Api.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await itemService.CreateItemAsync(int.Parse(userId!), itemDto);
-            return Ok("Item criado");
+            return Ok(new SuccessResponse("Item criado cum sucesso!"));
         }
 
         [HttpGet]

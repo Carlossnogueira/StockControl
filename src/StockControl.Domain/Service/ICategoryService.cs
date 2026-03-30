@@ -9,5 +9,8 @@ namespace StockControl.Domain.Service
     {
         public Task<Category> CreateCategoryAsync(int userId, CreateCategoryDto categoryDto);
         public Task<List<CategoryResponse>> GetAllAsync();
+        public Task<CategoryResponse> GetByIdAsync(int id);
+        public Task<CategoryResponse> Update(int id, CreateCategoryDto categoryDto);
+        public Task Delete(int id);
     }
 }

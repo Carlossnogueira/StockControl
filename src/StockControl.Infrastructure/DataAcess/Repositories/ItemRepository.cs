@@ -37,6 +37,7 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
                 Price = item.Price,
                 SalePrice = item.SalePrice,
                 Supplier = item.Supplier,
+                CreatedAt = item.CreatedAt,
                 Status = item.Status.ToString(),
                 CreatedBy = item.User.Name,
                 Description = item.Description

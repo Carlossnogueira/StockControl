@@ -8,7 +8,7 @@ public class CategoryNotFoundException : StockControlExceptionBase
 
      private readonly List<string> _Errors;
 
-        public override int StatusCode => (int)HttpStatusCode.UnprocessableEntity;
+        public override int StatusCode => (int)HttpStatusCode.NotFound;
         public CategoryNotFoundException() : base(string.Empty)
         {
             _Errors = ["A categoria não foi encontrada."]  ;

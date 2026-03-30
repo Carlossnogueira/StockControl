@@ -39,6 +39,11 @@ public class CategoryService : ICategoryService
         return result;
     }
 
+    public Task Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<CategoryResponse>> GetAllAsync()
     {
         var categories = await _categoryRepository.GetAllAsync();
@@ -56,6 +61,43 @@ public class CategoryService : ICategoryService
         }
 
         return categoryResponse;
+    }
+
+    public async Task<CategoryResponse> GetByIdAsync(int id)
+    {
+        var category = await _categoryRepository.GetByIdAsync(id);
+
+        if (category == null)
+        {
+            throw new CategoryNotFoundException();
+        }
+
+        var categoryResponse = category.Adapt<CategoryResponse>();
+
+        return categoryResponse;
+    }
+
+    public async Task<CategoryResponse> Update(int id, CreateCategoryDto categoryDto)
+    {
+        var categoryExists = await _categoryRepository.GetByIdAsync(id);
+
+        if (categoryExists == null)
+        {
+            throw new CategoryNotFoundException();
+        }
+
+        var categoryWithUpdatedNameExists = await _categoryRepository.GetByNameAsync(categoryDto.Name);
+
+        if (categoryWithUpdatedNameExists != null)
+        {
+            throw new CategoryAlreadyExistsException();
+        }
+
+        categoryExists.Name = categoryDto.Name;
+        _categoryRepository.UpdateCategory(categoryExists);
+        await _unitOfWork.Commit();
+        
+        return categoryExists.Adapt<CategoryResponse>();
     }
 
     private void ValidateCreateCategoryDto(CreateCategoryDto categoryDto)

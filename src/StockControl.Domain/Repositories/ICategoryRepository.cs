@@ -9,6 +9,6 @@ namespace StockControl.Domain.Repositories
         Task<Category?> GetByIdAsync(int id);
         Task<Category?> GetByNameAsync(string name);
         Task<List<Category>> GetAllAsync();
-        void UpdateCategoryAsync(Category category);
+        void UpdateCategory(Category category);
     }
 }

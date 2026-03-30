@@ -34,7 +34,7 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
             return await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
         }
 
-        public void UpdateCategoryAsync(Category category)
+        public void UpdateCategory(Category category)
         {
             _context.Categories.Update(category);
         }

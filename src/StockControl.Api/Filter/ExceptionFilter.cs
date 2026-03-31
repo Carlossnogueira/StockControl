@@ -29,7 +29,7 @@ namespace StockControl.Api.Filter
 
         private void ThrowUnkowError(ExceptionContext context)
         {
-            var errorResponse = new ErrorResponse("Erro interno no servidor!");
+            var errorResponse = new ErrorResponse("Erro interno no servidor!" + context.Exception.Message);
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Result = new ObjectResult(errorResponse);

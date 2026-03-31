@@ -28,7 +28,7 @@ namespace StockControl.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<CreateItemResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ItemListResponse>), StatusCodes.Status200OK)]
         [Authorize]
         public async Task<IActionResult> GetItems(
             [FromServices] IItemService itemService
@@ -37,5 +37,47 @@ namespace StockControl.Api.Controllers
             var items = await itemService.GetAllAsync();
             return Ok(items);
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ItemListResponse), StatusCodes.Status200OK)]
+        [Authorize]
+        public async Task<IActionResult> GetById(
+            [FromRoute] int id,
+            [FromServices] IItemService itemService
+        )
+        {
+            var response = await itemService.GetByIdAsync(id);
+            return Ok(response);
+        }
+
+        [HttpGet("get/{name}")]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ItemListResponse), StatusCodes.Status200OK)]
+        [Authorize]
+        public async Task<IActionResult> GetByName(
+          [FromRoute] string name,
+          [FromServices] IItemService itemService
+      )
+        {
+            var response = await itemService.GetByNameAsync(name);
+            return Ok(response);
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ItemListResponse), StatusCodes.Status200OK)]
+        [Authorize]
+        public async Task<IActionResult> Update(
+            [FromRoute] int id,
+            [FromBody] UpdateItemDto itemDto,
+            [FromServices] IItemService itemService
+        )
+        {
+            var response = await itemService.UpdateItem(id, itemDto);
+            return Ok(response);
+        }
     }
 }
+

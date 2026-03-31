@@ -47,15 +47,21 @@ namespace StockControl.Infrastructure.DataAcess.Repositories
 
         public async Task<Item?> GetByIdAsync(int id)
         {
-            return await _context.Items.FindAsync(id);
+            return await _context.Items
+                .Include(i => i.Category)
+                .Include(i => i.User)
+                .FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<Item?> GetByNameAsync(string name)
         {
-            return await _context.Items.FirstOrDefaultAsync(i => i.Name == name);
+            return await _context.Items
+                .Include(i => i.Category)
+                .Include(i => i.User)
+                .FirstOrDefaultAsync(i => i.Name == name);
         }
 
-        public void UpdateItemAsync(Item item)
+        public void UpdateItem(Item item)
         {
             _context.Items.Update(item);
         }

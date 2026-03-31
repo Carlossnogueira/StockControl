@@ -9,7 +9,7 @@ namespace StockControl.Domain.Repositories
         Task<Item?> GetByIdAsync(int id);
         Task<Item?> GetByNameAsync(string name);
         Task<List<Item>> GetAllAsync();
-        void UpdateItemAsync(Item item);
+        void UpdateItem(Item item);
         Task<List<ItemListResponse>> GetAllProjectedAsync();
     }
 }

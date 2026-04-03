@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using StockControl.Api.Filter;
 using StockControl.Infrastructure;
+using StockControl.Infrastructure.DataAcess.Seed;
 using StockControl.Service;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace StockControl.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -83,6 +84,8 @@ namespace StockControl.Api
             });
 
             var app = builder.Build();
+
+            await SeedData.SeedAdminAsync(app.Services);
 
             app.UseCors();
 
